@@ -9,30 +9,36 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
+CONFIG_SECRET_DIR = os.path.join(BASE_DIR, ".config_secret")
+CONFIG_SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+CONFIG_SECRET_DEBUG_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_debug.json')
+CONFIG_SECRET_DEPLOY_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.json')
+
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+# See httpCONFIG_SECRET_DEBUG_FILEs://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+
+config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#+8k&5nzna-m@3chck&t^(6x)5-q+#4w&5=p9nn0h*o$ow(gc-'
+SECRET_KEY = config_secret_common['django']['secret_key']
 
-SECRET_NAVER_ID = "oKbO17YVhhMJPzF6scR2"
-SECRET_NAVER_SECRET_KEY = "zFJN4bNH0H"
+
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
+AUTH_USER_MODEL = 'member.User'
 # Application definition
 
 INSTALLED_APPS = [

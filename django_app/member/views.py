@@ -1,25 +1,37 @@
 
 # Create your views here.
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth import get_user_model
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
+
+from member.forms import MyUserCreationForm
+
+User = get_user_model()
 
 
 def login(request):
 
     return render(request, "member/login.html")
 
+# user = super(UserForm, self).save(commit=False)
+#  user.set_password(self.cleaned_data["password"])
+#  if commit:
+#      user.save()
+#  return user
 
 def signup(request):
+
     if request.method == "POST":
-        userform = UserCreationForm(request.POST)
+        userform = MyUserCreationForm(request.POST)
         if userform.is_valid():
+            print(request.POST)
+            userform = User.objects.create_user(username=userform.cleaned_data['username'], password=userform.cleaned_data['password1'])
             userform.save()
-            return HttpResponseRedirect(reverse("Sign Up OK"))
+            return redirect("member:signup_ok")
 
     else:
-        userform = UserCreationForm()
+        userform = MyUserCreationForm()
 
     return render(request, 'member/signup.html', {'userform': userform})
 

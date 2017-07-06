@@ -1,6 +1,6 @@
 {% extends 'base/base.html' %}
   {% block content %}
-    <form action="{% url 'member:signup_ok' %}">{% csrf_token %}
+    <form action="" method="POST">{% csrf_token %}
         {{ userform.as_p }}
         <input type="submit" class="btn btn-success" value="가입하기">
     </form>
