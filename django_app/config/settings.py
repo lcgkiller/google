@@ -16,14 +16,16 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-print(TEMPLATES_DIR)
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '#+8k&5nzna-m@3chck&t^(6x)5-q+#4w&5=p9nn0h*o$ow(gc-'
+
+SECRET_NAVER_ID = "oKbO17YVhhMJPzF6scR2"
+SECRET_NAVER_SECRET_KEY = "zFJN4bNH0H"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +44,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'googleapp',
+    'naverapp',
     'member',
 
 ]
@@ -61,7 +64,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATE_DIR
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

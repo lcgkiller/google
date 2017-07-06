@@ -1,7 +1,10 @@
 from django.conf.urls import url
 
-from naverapp import views
+from . import views
+
+app_name="naverapp"
 
 urlpatterns = [
-    url(r'^$/', views.index)
+    url(r'^$', views.index, name="index"),
+    url(r'^search/$', views.search, name="search"),
 ]
