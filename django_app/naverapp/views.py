@@ -8,7 +8,11 @@ from config import settings
 
 def index(request):
 
-    return render(request, "naverapp/index.html")
+    return render(request, "base/base.html")
+
+def naver_map(request):
+
+    return render(request, "naverapp/naver_map.html")
 
 
 def search(request):
