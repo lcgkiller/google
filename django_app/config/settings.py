@@ -25,6 +25,10 @@ print(TEMPLATES_DIR)
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '#+8k&5nzna-m@3chck&t^(6x)5-q+#4w&5=p9nn0h*o$ow(gc-'
 
+# Google api key
+GOOGLE_API_KEY = 'AIzaSyCwO3H-TZqgAcdNtl63yfa3UkjzIphAxag'
+
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
