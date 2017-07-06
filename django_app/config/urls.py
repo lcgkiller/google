@@ -18,5 +18,6 @@ from django.contrib import admin
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^naver/', include('naverapp.urls'))
+    url(r'^naver/', include('naverapp.urls')),
+    url(r'^google/', include('googleapp.urls')),
 ]
