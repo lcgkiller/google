@@ -16,11 +16,6 @@ import os
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-
-print("절대경로 :", os.path.abspath(__file__))
-print("상대경로 :",os.path.relpath(__file__))
-
-
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
@@ -32,8 +27,6 @@ CONFIG_SECRET_DEPLOY_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.jso
 config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = config_secret_common['django']['secret_key']
-
-print("이제 제대로 읽니? :", config_secret_common)
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
