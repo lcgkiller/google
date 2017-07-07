@@ -1,12 +1,12 @@
-FROM        google
+FROM        google_ubuntu
 MAINTAINER  dev@azelf.com
 
-# 현재경로의 모든 파일들을 컨테이너의 /srv/deploy_eb_docker폴더에 복사
-COPY        . /srv/deploy_eb_docker
+# 현재경로의 모든 파일들을 컨테이너의 /srv/google 폴더에 복사
+COPY        . /srv/google
 # cd /srv/deploy_eb_docker와 같은 효과
-WORKDIR     /srv/deploy_eb_docker
+WORKDIR     /srv/google
 # requirements설치
-RUN         /root/.pyenv/versions/deploy_eb_docker/bin/pip install -r .requirements/deploy.txt
+RUN         /root/.pyenv/versions/google/bin/pip install -r .requirements/deploy.txt
 
 # 슈퍼바이저 파일 복사
 COPY .config/supervisor/uwsgi.conf /etc/supervisor/conf.d/
@@ -20,8 +20,7 @@ RUN         ln -sf /etc/nginx/sites-available/nginx-app.conf /etc/nginx/sites-en
 
 
 # collectstatic 실행
-RUN  /root/.pyenv/versions/deploy_eb_docker/bin/python /srv/deploy_eb_docker/django_app/manage.py collectstatic --settings=config.settings.deploy --noinput
-
+RUN  /root/.pyenv/versions/google/bin/python /srv/google/django_app/manage.py collectstatic --settings=config.settings.deploy --noinput
 
 CMD         supervisord -n
 EXPOSE      80 8000
