@@ -24,7 +24,7 @@ urlpatterns = [
     url(r'^member/', include('member.urls')),
 ]
 
-# /static/에 대한 요청을 STATIC_ROOT 경로의 파일에서 찾는다
+# /static/에 대한 요청을 STATIC_ROOT 경로의 파일에서 찾는다 (도커에서도 실행되게 만듦)
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 # /media/에 대한 요청을 MEDIA_ROOT 경로의 파일에서 찾는다
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

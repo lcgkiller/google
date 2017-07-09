@@ -33,7 +33,8 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'member.User'
+# Authentication
+AUTH_USER_MODEL = 'member.MyUser'
 
 # Application definition
 INSTALLED_APPS = [
@@ -121,3 +122,4 @@ STATIC_DIR = os.path.join(BASE_DIR, 'static')
 STATICFILES_DIRS = [
     STATIC_DIR,
 ]
+

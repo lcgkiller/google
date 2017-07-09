@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import UserCreationForm
 
+from member.models import MyUser
+
 User = get_user_model()
 
 
@@ -11,6 +13,6 @@ class MyUserCreationForm(UserCreationForm):
     password2 = forms.CharField(widget=forms.PasswordInput)
 
     class Meta:
-        model = User
-        fields = ['username', 'password1', 'password2']
+        model = MyUser
+        fields = ('username', 'password1', 'password2')
 
