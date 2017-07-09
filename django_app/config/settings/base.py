@@ -9,30 +9,34 @@ https://docs.djangoproject.com/en/1.11/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
-
+import json
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 ROOT_DIR = os.path.dirname(BASE_DIR)
 
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
-print(TEMPLATES_DIR)
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
+CONFIG_SECRET_DIR = os.path.join(ROOT_DIR, '.config_secret')
+CONFIG_SECRET_COMMON_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_common.json')
+CONFIG_SECRET_DEBUG_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_debug.json')
+CONFIG_SECRET_DEPLOY_FILE = os.path.join(CONFIG_SECRET_DIR, 'settings_deploy.json')
 
+
+config_secret_common = json.loads(open(CONFIG_SECRET_COMMON_FILE).read())
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '#+8k&5nzna-m@3chck&t^(6x)5-q+#4w&5=p9nn0h*o$ow(gc-'
+SECRET_KEY = config_secret_common['django']['secret_key']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Authentication
+AUTH_USER_MODEL = 'member.MyUser'
 
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'googleapp',
+    'naverapp',
     'member',
 
 ]
@@ -61,7 +66,9 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            TEMPLATE_DIR
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -73,20 +80,6 @@ TEMPLATES = [
         },
     },
 ]
-
-WSGI_APPLICATION = 'config.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
-}
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -124,8 +117,9 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
-STATIC_URL = '/static/'
+
 STATIC_DIR = os.path.join(BASE_DIR, 'static')
-STATICFILES_DIRS = (
+STATICFILES_DIRS = [
     STATIC_DIR,
-)
+]
+
