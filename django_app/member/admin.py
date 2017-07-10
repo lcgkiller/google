@@ -5,6 +5,7 @@ from django.contrib.auth.admin import UserAdmin
 from .models import MyUser
 from django.utils.translation import ugettext_lazy as _
 
+
 class MyUserAdmin(UserAdmin):
     fieldsets = (
         (None, {'fields': ('username', 'password', 'img_profile')}),
