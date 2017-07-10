@@ -19,7 +19,7 @@ RUN         rm -rf /etc/nginx/sites-enabled/default
 RUN         ln -sf /etc/nginx/sites-available/nginx-app.conf /etc/nginx/sites-enabled/nginx-app.conf
 
 # collectstatic 실행
-RUN  /root/.pyenv/versions/google/bin/python /srv/google/django_app/manage.py collectstatic --settings=config.settings.deploy --noinput
+RUN         /root/.pyenv/versions/google/bin/python /srv/google/django_app/manage.py collectstatic --settings=config.settings.deploy --noinput
 
 CMD         supervisord -n
 EXPOSE      80 8000
