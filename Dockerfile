@@ -1,4 +1,4 @@
-FROM        lcgkiller/google_ubuntu
+FROM        lcgkiller/deploy_google
 MAINTAINER  dev@azelf.com
 
 # 현재경로의 모든 파일들을 컨테이너의 /srv/google 폴더에 복사
