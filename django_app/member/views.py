@@ -1,5 +1,6 @@
 
 # Create your views here.
+from allauth.socialaccount.adapter import DefaultSocialAccountAdapter
 from django.contrib.auth import get_user_model
 from django.shortcuts import render, redirect
 
@@ -36,3 +37,8 @@ def signup(request):
 
 def signup_ok(request):
     return render(request, 'member/signup_ok.html')
+
+class AccountAdapter(DefaultSocialAccountAdapter):
+    def get_login_redirectd_url(self, request):
+        print("social adapter!!!")
+        return '/'

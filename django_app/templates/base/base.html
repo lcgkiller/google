@@ -1,4 +1,5 @@
 {% load static %}
+{% load socialaccount %}
 <!doctype html>
 <html lang="ko">
 <head>
@@ -30,7 +31,11 @@
               <input type="password" placeholder="Password" class="form-control">
             </div>
             <button type="submit" class="btn btn-success">Sign in</button>
-            <button type="submit" class="btn btn-success"><a href="{% url 'member:signup' %}">회원가입</a></button>
+            <button type="submit" class="btn btn-success"><a href="{% provider_login_url 'facebook' method='oauth2' %}">페이스북 로그인</a></button>
+            <!--<button type="submit" class="btn btn-success">-->
+              <!--<a href="http://localhost:8000/accounts/naver/login/callback/ ">네이버 로그인</a>-->
+            <!--</button>-->
+            <button type="submit" class="btn btn-success"><a href="{% url 'member:django_signup' %}">회원가입</a></button>
           </form>
         </div><!--/.navbar-collapse -->
       </div>

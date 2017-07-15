@@ -9,7 +9,7 @@ Function views
 Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
-Including another URLconf
+Including danother URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^index/', include('naverapp.urls')),
     url(r'^member/', include('member.urls')),
+    url(r'^accounts/', include('allauth.urls'), name='social')
 ]
 
 # /static/에 대한 요청을 STATIC_ROOT 경로의 파일에서 찾는다 (도커에서도 실행되게 만듦)
